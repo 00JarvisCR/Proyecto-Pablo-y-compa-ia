@@ -1,10 +1,13 @@
 #ifndef HABITACION_H
 #define HABITACION_H
 
-#include <string>
+#include <iostream>
+#include <sstream>
+
 #include "cliente.h"
 #include "informacion.h"
 #include "Reloj.h" // Incluimos Reloj para usar el método static
+
 using namespace std;
 
 
@@ -43,5 +46,7 @@ public:
 	void setCliente(Cliente* pCliente);
 	void setInformacion(Informacion* pInfo);
 	void setPrecioBase(double pPrecio);
+	
+	string to_string(); // para mostrar la habitacion
 };
 #endif // HABITACION_H

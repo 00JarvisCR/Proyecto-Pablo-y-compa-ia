@@ -1,33 +1,34 @@
 #ifndef CLIENTE_H
 #define CLIENTE_H
 
-#include <string>
+#include <iostream>
 
+using namespace std;
 
 class Cliente {
 private:
-	std::string nombre;
-	std::string identificacion;
-	std::string formaPago;
-	std::string telefono;
-	std::string numeroCuenta;
+	string nombre;
+	string identificacion;
+	string formaPago;
+	string telefono;
+	string numeroCuenta;
 	
 public:
 	// Constructor por defecto
 	Cliente();
 	
 	
-	Cliente(const std::string& pNombre, const std::string& pIdentificacion, const std::string& pFormaPago, const std::string& pTelefono, const std::string& pNumeroCuenta);
+	Cliente(const string& pNombre, const string& pIdentificacion, const string& pFormaPago, const string& pTelefono, const string& pNumeroCuenta);
 	
 	
 	~Cliente();
 	
 	// getters
-	std::string getNombre() const;
-	std::string getIdentificacion() const; 
-	std::string getFormaPago() const;
-	std::string getTelefono() const;       
-	std::string getNumeroCuenta() const;
+	string getNombre() const;
+	string getIdentificacion() const; 
+	string getFormaPago() const;
+	string getTelefono() const;       
+	string getNumeroCuenta() const;
 	
 	// setters
 	void setNombre(const std::string& pNombre);

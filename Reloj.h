@@ -1,6 +1,9 @@
 #ifndef RELOJ_H
 #define RELOJ_H
 
+#include <iostream>
+using namespace std;
+
 class Reloj {
 public:
 	static int obtenerHora24();

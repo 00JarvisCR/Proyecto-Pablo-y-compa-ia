@@ -104,3 +104,17 @@ double Habitacion::calcularPrecioFinal() const {
 	}
 	return precioFinal;
 }
+
+string Habitacion::to_string() {
+	stringstream oss;
+	
+	oss << "ID: " << idHabitacion <<endl;
+	oss << "Estado: " << estado << endl;
+	oss << "Capacidad: " << capacidad << endl;
+	oss << "Cliente: " << cliente->getNombre() << endl;
+	oss << "Precio base: " << precioBase << endl;
+	oss << "\nInformacion de la habitacion:\n\n";
+	oss << info->to_string();
+	
+	return oss.str();
+}

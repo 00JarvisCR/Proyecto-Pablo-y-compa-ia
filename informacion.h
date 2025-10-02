@@ -1,6 +1,9 @@
 #ifndef INFORMACION_H
 #define INFORMACION_H
 
+#include <iostream>
+using namespace std;
+
 // Clase Informacion: detalles de la estadía en la habitación.
 class Informacion {
 private:
@@ -30,6 +33,8 @@ public:
 	void setNumNinos(int pNumNinos);
 	void setNumDias(int pNumDias);
 	void setTodoIncluido(bool pTodoIncluido);
+	
+	string to_string();
 };
 
 #endif // INFORMACION_H

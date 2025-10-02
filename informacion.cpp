@@ -1,5 +1,5 @@
 #include "Informacion.h"
-
+#include <sstream>
 // Implementación de la clase Informacion
 
 Informacion::Informacion() {
@@ -50,4 +50,23 @@ void Informacion::setNumDias(int pNumDias) {
 
 void Informacion::setTodoIncluido(bool pTodoIncluido) {
 	this->todoIncluido = pTodoIncluido;
+}
+
+string Informacion::to_string() {
+	string  es_todoIncluido;
+	if(todoIncluido) {
+		es_todoIncluido = "Es todo incluido.";
+	}
+	else {
+		es_todoIncluido = "No es todo incluido.";
+	}
+	
+	stringstream oss;
+	
+	oss << "Numero de adulto: " << numAdultos << endl;
+	oss << "Numero de ninnos: " << numNinos << endl;
+	oss << "Dias de reservacion: " << numDias << endl;
+	oss << "La habitacion " << es_todoIncluido << endl;
+	
+	return oss.str();
 }

@@ -1,1 +1,0 @@
-# Mierdon historico

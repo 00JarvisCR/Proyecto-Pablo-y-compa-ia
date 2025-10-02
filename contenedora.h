@@ -11,7 +11,7 @@ using namespace std;
 class Contenedora {
 private:
 	int filas, columnas;
-	Habitacion** habitaciones = nullptr; // la matriz de habitaciones (basicamente simula un edificio que son literalmente una estructura de habitacinoes)
+	Habitacion** habitaciones; // la matriz de habitaciones (basicamente simula un edificio que son literalmente una estructura de habitacinoes)
 public:
 	Contenedora(int filas, int columnas); // constructor
 	~Contenedora(); // destructor

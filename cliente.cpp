@@ -1,7 +1,4 @@
 #include "cliente.h"
-#include <iostream> 
-
-
 
 Cliente::Cliente(){ // Constructor sin parametros
 	this->nombre = "";

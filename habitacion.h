@@ -2,7 +2,6 @@
 #define HABITACION_H
 
 #include <iostream>
-#include <sstream>
 
 #include "cliente.h"
 #include "informacion.h"
@@ -42,6 +41,7 @@ public:
 	double calcularPrecioFinal() const;
 	
 	// Métodos de modificación (setters)
+	void setIdHabitacion(string pId);
 	void setEstado(char pEstado);
 	void setCliente(Cliente* pCliente);
 	void setInformacion(Informacion* pInfo);

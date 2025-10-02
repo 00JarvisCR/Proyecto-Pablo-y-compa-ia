@@ -1,6 +1,5 @@
 #include "habitacion.h"
-#include <iostream>
-
+#include <sstream>
 // Implementación de la clase Habitacion
 
 Habitacion::Habitacion() {
@@ -57,6 +56,7 @@ Informacion* Habitacion::getInformacion() const { return this->info; }
 double Habitacion::getPrecioBase() const { return this->precioBase; }
 
 // Sets
+void Habitacion::setIdHabitacion(string pId) { this->idHabitacion = pId; }
 void Habitacion::setEstado(char pEstado) { this->estado = pEstado; }
 void Habitacion::setCliente(Cliente* pCliente) { this->cliente = pCliente; }
 void Habitacion::setInformacion(Informacion* pInfo) { this->info = pInfo; }
@@ -70,21 +70,25 @@ double Habitacion::calcularPrecioFinal() const {
 	}
 	
 	double precioFinal = 0.0;
+	double n = info->getNumDias(); // para que no de error de mezclar int y double
 	
 	// Condición 1: Todo Incluido
 	if (info->getTodoIncluido()) {
-		precioFinal = (info->getNumAdultos() * 300.00 + info->getNumNinos() * 200.00) * info->getNumDias();
-	} else {
+		precioFinal = (info->getNumAdultos() * 300.00 + info->getNumNinos() * 200.00) * n;
+	} 
+	else {
+		
 		// Obtenemos la hora actual para la condición de descuento
 		int horaDelCalculo = Reloj::obtenerHora24(); 
 		
 		// Condición 2 (Diurna): Descuento NO aplica. Asumimos 3 AM a 6 PM (hora 3 a hora 18)
 		if (horaDelCalculo >= 3 && horaDelCalculo <= 18) { 
-			precioFinal = this->precioBase * info->getNumDias();
+			
+			precioFinal = this->precioBase * n;
 		} 
 		// Condición 3 (Nocturna): Descuento aplica (antes de las 3 AM o después de las 6 PM)
 		else {
-			precioFinal = this->precioBase * info->getNumDias();
+			precioFinal = this->precioBase * n;
 			
 			double descuento = 0.0;
 			int totalPersonas = info->getNumAdultos() + info->getNumNinos();

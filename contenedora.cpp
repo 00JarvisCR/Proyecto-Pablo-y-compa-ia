@@ -1,5 +1,7 @@
 #include "Contenedora.h"
 
+#include <sstream>
+
 Contenedora::Contenedora(int filas, int columnas) {
 	this->filas = filas;
 	this->columnas = columnas;
@@ -89,6 +91,11 @@ bool Contenedora::realizar_ocupacion(Habitacion habitacion) {
 			if(habitaciones[i][j].getIdHabitacion() == ""){
 				// Se inserta la habitacion en ese campo
 				habitaciones[i][j] = habitacion;
+				
+				stringstream id;
+				id << i << j; // el id de la habitacion va ser el del espacio en el que este en la matriz
+				
+				habitaciones[i][j].setIdHabitacion(id.str()); // se le da el id a la habitacion automaticamente
 				return true; // retorna true una vez se haya insertado la Habitacion al registro
 			}
 		}
@@ -99,9 +106,18 @@ bool Contenedora::realizar_ocupacion(Habitacion habitacion) {
 bool Contenedora::liberar_habitacion(string identificacion) {
 	for (int i = 0; i < filas; i++) {
 		for (int j = 0; j < columnas; j++) {
+			// se evaluan solo las habitaciones existentes para que no de error si se intenta acceder al usuario
+			if(habitaciones[i][j].getIdHabitacion() == ""){
+				continue; // salta a la siguiente iteracion
+			}
 			// buscar la habitacion por el id del usuario
 			if(habitaciones[i][j].getCliente()->getIdentificacion() == identificacion) {
-				habitaciones[i][j] = Habitacion(); // toda la habiatacion pasa a no tener nada de informacion
+			
+				delete habitaciones[i][j].getCliente(); // se elimina el cliente
+				delete habitaciones[i][j].getInformacion(); // se elimina la informacion
+				
+				habitaciones[i][j] = Habitacion(); // la habitacion pasa a estar vacia
+				
 				return true; // retorna true para verificar que se puedo liberar la habitacion
 			}
 		}
@@ -144,6 +160,10 @@ double Contenedora::dinero_todoIncluido() {
 	
 	for (int i = 0; i < filas; i++) {
 		for (int j = 0; j < columnas; j++) {
+			// se evaluan solo las habitacions que esten registradas
+			if(habitaciones[i][j].getIdHabitacion() == ""){
+				continue; // salta a la siguiete iteracion
+			}
 			// se evaluan las habitaciones todo incluido
 			if(habitaciones[i][j].getInformacion()->getTodoIncluido()) {
 				// se le suma el precio de la habitacion al dinero recaudado
@@ -160,6 +180,10 @@ double Contenedora::dinero_sinTodoIncluido() {
 	
 	for (int i = 0; i < filas; i++) {
 		for (int j = 0; j < columnas; j++) {
+			// se evaluan solo las habitacions que esten registradas
+			if(habitaciones[i][j].getIdHabitacion() == ""){
+				continue; // salta a la siguiete iteracion
+			}
 			// se evaluan las habitaciones sin todo incluido
 			if(!habitaciones[i][j].getInformacion()->getTodoIncluido()) {
 				// se le suma el precio de la habitacion al dinero recaudado
@@ -176,6 +200,10 @@ double Contenedora::dinero_clientes() {
 	
 	for (int i = 0; i < filas; i++) {
 		for (int j = 0; j < columnas; j++) {
+			// se evaluan solo las habitacions que esten registradas
+			if(habitaciones[i][j].getIdHabitacion() == ""){
+				continue; // salta a la siguiete iteracion
+			}
 			// se le suma el precio de todas las habitaciones al dinero recaudado
 			dinero_recaudado += habitaciones[i][j].calcularPrecioFinal();
 		}
